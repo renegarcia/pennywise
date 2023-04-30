@@ -1,0 +1,14 @@
+[build-system]
+build-backend = "poetry.masonry.api"
+requires = ["poetry>=1.3.2"]
+
+[tool]
+[tool.poetry]
+authors = ["Rene Garcia <rene@numerics.mx>"]
+description = ""
+name = "django-template"
+version = "0.1.0"
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "4.2"
+[tool.poetry.dev-dependencies]
