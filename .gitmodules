@@ -1,0 +1,3 @@
+[submodule "caja"]
+	path = caja
+	url = https://github.com/renegarcia/caja.git

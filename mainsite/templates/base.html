@@ -1,0 +1,189 @@
+{% load i18n %}
+{% load static %}
+{% load django_bootstrap5 %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+  <!-- MDB icon -->
+  <link rel="icon" href="{% static 'img/mdb-favicon.ico' %}" type="image/x-icon" />
+   <!-- Font Awesome -->
+   <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+   />
+   <!-- Google Fonts Roboto -->
+   <link
+     rel="stylesheet"
+     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+   />
+   <!-- MDB -->
+   <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}" />
+
+  {% block body_style %}
+  <style>
+    body {
+      background-color: #dfe5e8 !important
+    }
+  </style>
+  {% endblock body_style %}
+
+    <title>{% block title %}{% trans "Control de efectivo" %}{% endblock title %}</title>
+  </head>
+  <body>
+    <div class="vh-100">
+    {% block navbar %}
+    <!-- Barra de navegacion -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Contenedor -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Navbar brand -->
+          <a class="navbar-brand mt-2 mt-lg-0" href="#">
+            <img
+              src="{% static 'img/logo-simple.png' %}"
+              height="15"
+              alt="Numerics Logo"
+              loading="lazy"
+            />
+          </a>
+          <!-- Ligas a la izquierda -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'caja:caja_list' %}">{% trans "Cajas" %}</a>
+            </li>
+          </ul>
+          <!-- Ligas izquierdas -->
+        </div>
+        <!-- Collapsible wrapper -->
+
+        <!-- Elementos de la derecha -->
+        <div class="d-flex align-items-center">
+
+          <!-- Notifications -->
+          <!-- Avatar -->
+          <div class="dropdown">
+            <a
+              class="dropdown-toggle d-flex align-items-center hidden-arrow"
+              href="#"
+              id="navbarDropdownMenuAvatar"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+            <i class="fa-regular fa-user"></i>
+            &nbsp;{{user.username}}
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdownMenuAvatar"
+            >
+              {% if user.is_staff %}
+              <li>
+                <a class="dropdown-item" href="/admin">
+                  <i class="fa-solid fa-gear"></i>    
+                  {% trans "Admin" %}
+                </a>
+              </li>            
+              {% endif %}
+              <li>
+                <a class="dropdown-item" href="{% url 'logout' %}">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  {% translate "Salir" %}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Right elements -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+    {% endblock navbar %}
+
+    {% block content %}{% endblock content %}
+    </div>
+
+    {% block footer %}
+    <!-- Footer -->
+    <footer class="text-center bg-light text-muted">
+      <!-- Grid container -->
+      <div class="container pt-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Instagram -->
+        <a
+          class="btn text-white btn-floating m-1"
+          style="background-color: #ac2bac;"
+          href="https://www.instagram.com/clubdeprogra/"
+          role="button"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+              
+          <!-- Tumblr -->
+
+          <a
+        class="btn text-white btn-floating m-1"
+        style="background-color: #0082ca;"
+        href="https://clubdeprogra.com/"
+        role="button"
+        ><i class="fab fa-tumblr"></i
+      ></a>
+          
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+      
+      <section class="d-flex justify-content-center justify-content-lg-between border-bottom">
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5">
+              <h6 class="text-uppercase fw-bold mb-4 text-center">
+                <i class="fas fa-gem me-3"></i>cludbdeprogra.com
+              </h6>
+              <p>
+                {% translate "Somos un grupo de profesores entusiasmados de la tecnología que disfrutamos impartir cursos y realizar proyectos de programación aplicados a la ciencia de datos." %}
+              </p>
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2023 Copyright:
+        <a class="text-reset fw-bold" href="https://clubdeprogra.com/">Club De Progra</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    {% endblock footer %}
+
+    {# bootstrap_javascript #}
+    <!-- MDB -->
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+    {% bootstrap_messages %}
+  </body>
+</html>

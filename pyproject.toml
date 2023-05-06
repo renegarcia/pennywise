@@ -11,4 +11,7 @@ version = "0.1.0"
 [tool.poetry.dependencies]
 python = "^3.10"
 django = "4.2"
+django-tables2 = "2.5.3"
+django-filter = "23.1"
+django-bootstrap5 = "23.1"
 [tool.poetry.dev-dependencies]

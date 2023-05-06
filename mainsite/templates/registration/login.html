@@ -1,0 +1,44 @@
+{% extends 'base_generic.html' %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+
+{% block stylesheets %}
+<style>
+  body {
+    background-image: url(https://bing.biturl.top/?resolution=1920&format=image&index=0&mkt=zh-CN);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="d-flex align-items-center" style="min-height: 100vh;">
+    <div class="mx-auto card" >
+      <div class="card-body">
+        <h2 class="card-title">{% trans "Iniciar sesión" %}</h2>
+          {% if form.errors %}
+          <p>{% trans "Nombre de usuario o contraseña inválidos. Por favor intente otra vez." %}</p>
+          {% endif %}
+      
+        {% if next %}
+          {% if user.is_authenticated %}
+            <p>{% trans "Su cuenta no tiene acceso al recurso solicitado." %}</p>
+          {% else %}
+            <p>{% trans "Por favor, inicie sesión para continuar." %}</p>
+          {% endif %}
+        {% endif %}
+        <form method="post">
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          {% bootstrap_button button_type="submit" content="Iniciar" %}
+          <input type="hidden" name="next" value="{{ next }}">
+        </form>
+
+        <p><a href="{% url 'password_reset' %}">{% trans "¿Olvidó la contraseña?" %}</a></p>
+      </div>
+    </div>
+</div>
+{% endblock content %}
